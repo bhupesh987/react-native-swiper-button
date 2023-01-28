@@ -15,5 +15,8 @@
     "button"
   ],
   "author": "Bhupesh kumar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react-native-linear-gradient": "^2.6.2"
+  }
 }

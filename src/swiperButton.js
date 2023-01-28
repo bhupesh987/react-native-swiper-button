@@ -12,6 +12,7 @@ import Animated, {
   runOnJS,
 } from 'react-native-reanimated';
 import {Dimensions, Image} from 'react-native';
+import styles from './styles';
 
 const BUTTON_WIDTH = Dimensions.get('window').width / 1.7;
 const BUTTON_HEIGHT = 50;
@@ -22,21 +23,26 @@ const H_WAVE_RANGE = SWIPEABLE_DIMENSIONS + 2 * BUTTON_PADDING;
 let H_SWIPE_RANGE = BUTTON_WIDTH - 2 * BUTTON_PADDING - SWIPEABLE_DIMENSIONS;
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
-const SwipeButton = ({onToggle, title}) => {
-  // Animated value for X translation
+const SwipeButton = ({
+  onToggle = () => {},
+  title = 'Swipe me',
+  customIcon,
+  style = {},
+  iconStyle = {},
+  textStyle = {},
+  startColor = 'red',
+  endColor = 'red',
+}) => {
   const X = useSharedValue(0);
-  // Toggled State
   const [toggled, setToggled] = useState(false);
 
-  // Fires when animation ends
   const handleComplete = isToggled => {
     if (isToggled !== toggled) {
       setToggled(isToggled);
-      // onToggle(isToggled);
+      onToggle(isToggled);
     }
   };
 
-  // Gesture Handler Events
   const animatedGestureHandler = useAnimatedGestureHandler({
     onStart: (_, ctx) => {
       ctx.completed = toggled;
@@ -109,10 +115,10 @@ const SwipeButton = ({onToggle, title}) => {
   };
 
   return (
-    <Animated.View style={[styles.swipeCont, AnimatedStyles.swipeCont]}>
+    <Animated.View style={[styles.swipeCont, style, AnimatedStyles.swipeCont]}>
       <AnimatedLinearGradient
         style={[AnimatedStyles.colorWave, styles.colorWave]}
-        colors={['red', 'red']}
+        colors={[startColor, endColor]}
         start={{x: 0.0, y: 0.5}}
         end={{x: 1, y: 0.5}}
       />
@@ -123,17 +129,20 @@ const SwipeButton = ({onToggle, title}) => {
           setToggled(false);
         }}>
         <Animated.View style={[styles.swipeable, AnimatedStyles.swipeable]}>
-          <Image
-            resizeMode="contain"
-            style={{height: 20, width: 20}}
-            source={{
-              uri: 'https://www.shutterstock.com/image-photo/word-demo-appearing-behind-torn-260nw-1782295403.jpg',
-            }}
-          />
+          {customIcon ? (
+            customIcon
+          ) : (
+            <Image
+              resizeMode="contain"
+              style={[{height: 20, width: 20, tintColor: 'red'}, iconStyle]}
+              source={require('./right-arrow.png')}
+            />
+          )}
         </Animated.View>
       </PanGestureHandler>
-      <Animated.Text style={[styles.swipeText, AnimatedStyles.swipeText]}>
-        Click
+      <Animated.Text
+        style={[styles.swipeText, textStyle, AnimatedStyles.swipeText]}>
+        {title}
       </Animated.Text>
     </Animated.View>
   );
