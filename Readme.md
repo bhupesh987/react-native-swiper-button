@@ -1,27 +1,27 @@
 
 ## Getting Started
 
+<img width=200 title="iOS Crop Circular" src="https://github.com/ivpusic/react-native-image-crop-picker/blob/master/images/ios_circular_crop.png">
+
 ### Installation
 
 ```bash
 npm i react-native-swiper-button --save
 ```
 
-## Development pattern
+## Usage
 
-### Step 1, clone repo
+Import library
 
-After clone this repo, then:
-
-```bash
-npm install
-npm start
+```javascript
+import ImagePicker from 'react-native-image-crop-picker';
 ```
 
-### Step 2, run demo
-
-```bash
-cd demo
-npm install
-npm start
+```javascript
+<SwiperButton 
+  title={'Swipe'}
+  onToggle={() => {
+    //Perform your action as per requirement
+  }}
+  style={{}} />
 ```
