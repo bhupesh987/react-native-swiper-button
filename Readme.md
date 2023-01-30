@@ -1,7 +1,7 @@
 
 ## Getting Started
 
-<img width=200 title="iOS Crop Circular" src="https://github.com/ivpusic/react-native-image-crop-picker/blob/master/images/ios_circular_crop.png">
+<img width=200 title="iOS Crop Circular" src="https://github.com/bhupesh987/react-native-swiper-button/blob/master/swipe.jpg">
 
 ### Installation
 
