@@ -7,6 +7,10 @@
     "lint": "eslint .",
     "test": "jest"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhupesh987/react-native-swiper-button.git"
+  },
   "keywords": [
     "swiper",
     "swipe",
