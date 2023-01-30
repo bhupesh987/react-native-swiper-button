@@ -1,6 +1,9 @@
 import React, {memo, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import {PanGestureHandler} from 'react-native-gesture-handler';
+import {
+  GestureHandlerRootView,
+  PanGestureHandler,
+} from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedGestureHandler,
   useSharedValue,
@@ -115,36 +118,39 @@ const SwipeButton = ({
   };
 
   return (
-    <Animated.View style={[styles.swipeCont, style, AnimatedStyles.swipeCont]}>
-      <AnimatedLinearGradient
-        style={[AnimatedStyles.colorWave, styles.colorWave]}
-        colors={[startColor, endColor]}
-        start={{x: 0.0, y: 0.5}}
-        end={{x: 1, y: 0.5}}
-      />
-      <PanGestureHandler
-        onGestureEvent={animatedGestureHandler}
-        onEnded={() => {
-          X.value = 0;
-          setToggled(false);
-        }}>
-        <Animated.View style={[styles.swipeable, AnimatedStyles.swipeable]}>
-          {customIcon ? (
-            customIcon
-          ) : (
-            <Image
-              resizeMode="contain"
-              style={[{height: 20, width: 20, tintColor: 'red'}, iconStyle]}
-              source={require('./right-arrow.png')}
-            />
-          )}
-        </Animated.View>
-      </PanGestureHandler>
-      <Animated.Text
-        style={[styles.swipeText, textStyle, AnimatedStyles.swipeText]}>
-        {title}
-      </Animated.Text>
-    </Animated.View>
+    <GestureHandlerRootView>
+      <Animated.View
+        style={[styles.swipeCont, style, AnimatedStyles.swipeCont]}>
+        <AnimatedLinearGradient
+          style={[AnimatedStyles.colorWave, styles.colorWave]}
+          colors={[startColor, endColor]}
+          start={{x: 0.0, y: 0.5}}
+          end={{x: 1, y: 0.5}}
+        />
+        <PanGestureHandler
+          onGestureEvent={animatedGestureHandler}
+          onEnded={() => {
+            X.value = 0;
+            setToggled(false);
+          }}>
+          <Animated.View style={[styles.swipeable, AnimatedStyles.swipeable]}>
+            {customIcon ? (
+              customIcon
+            ) : (
+              <Image
+                resizeMode="contain"
+                style={[{height: 20, width: 20, tintColor: 'red'}, iconStyle]}
+                source={require('./right-arrow.png')}
+              />
+            )}
+          </Animated.View>
+        </PanGestureHandler>
+        <Animated.Text
+          style={[styles.swipeText, textStyle, AnimatedStyles.swipeText]}>
+          {title}
+        </Animated.Text>
+      </Animated.View>
+    </GestureHandlerRootView>
   );
 };
 
