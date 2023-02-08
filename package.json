@@ -1,6 +1,6 @@
 {
   "name": "react-native-swiper-button",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "It is a custom animated swiper button, just like the swipe payment button",
   "main": "index.js",
   "scripts": {

@@ -14,7 +14,7 @@ npm i react-native-swiper-button --save
 Import library
 
 ```javascript
-import ImagePicker from 'react-native-image-crop-picker';
+import SwiperButton from 'react-native-swiper-button';
 ```
 
 ```javascript
